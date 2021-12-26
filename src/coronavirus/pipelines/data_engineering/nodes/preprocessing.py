@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import logging
+from sklearn.model_selection import train_test_split
 
 
 def remove_Empty_Columns(data: pd.DataFrame) -> pd.DataFrame:
@@ -35,3 +36,11 @@ def feature_engineering(data: pd.DataFrame, intitaldata: pd.DataFrame) -> pd.Dat
     data['est malade'] = data[viral_columns].sum(axis=1) >= 1
     df = data.drop(viral_columns, axis=1)
     return df
+
+def imputation(df):
+    df = df.dropna(axis=0)
+    return  df
+
+def data_split(data: pd.DataFrame) -> pd.DataFrame:
+    trainset, testset = train_test_split(data, test_size=0.2, random_state=0)
+    return trainset, testset

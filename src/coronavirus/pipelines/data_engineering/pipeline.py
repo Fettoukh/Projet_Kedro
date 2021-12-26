@@ -2,7 +2,8 @@ from kedro.pipeline import Pipeline, node
 from .nodes.preprocessing import remove_Empty_Columns
 from .nodes.preprocessing import encodage
 from .nodes.preprocessing import feature_engineering
-
+from .nodes.preprocessing import imputation
+from .nodes.preprocessing import data_split
 
 def dataEng_pipeline():
     return Pipeline(
@@ -21,6 +22,17 @@ def dataEng_pipeline():
                 func=feature_engineering,
                 inputs=["encoded_dataset", "initial_dataset"],
                 outputs="feature_engineered_dataset",
+            ),
+            node(
+                func=imputation,
+                inputs=["feature_engineered_dataset"],
+                outputs="imputation_dataset",
+            ),
+
+            node(
+                func=data_split,
+                inputs=["imputation_dataset"],
+                outputs=["train_data","test_data"],
             ),
         ]
     )
