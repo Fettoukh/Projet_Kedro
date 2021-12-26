@@ -4,17 +4,17 @@
 # Link: https://kedro.readthedocs.io/en/stable/05_data/01_data_catalog.html
 
 initial_dataset:
-    type: pandas.CSVDataSet
-    filepath: data/01_raw/dataset.csv
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/dataset.xlsx
 
 subset_dataset:
-    type: pandas.CSVDataSet
-    filepath: data/01_raw/subset_dataset.csv
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/subset_dataset.xlsx
 
 encoded_dataset:
-    type: pandas.CSVDataSet
-    filepath: data/01_raw/encoded_dataset.csv
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/encoded_dataset.xlsx
 
 feature_engineered_dataset:
-    type: pandas.CSVDataSet
-    filepath: data/01_raw/feature_engineered_dataset.csv
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/feature_engineered_dataset.xlsx

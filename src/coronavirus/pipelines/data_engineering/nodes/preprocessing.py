@@ -21,7 +21,6 @@ def encodage(data: pd.DataFrame) -> pd.DataFrame:
             'positive': 1,
             'not_detected': 0,
             'detected': 1}
-    print("qsssssssssssssssssssssssss!!!!!!!!!!!!!!!!!!")
     for col in data.select_dtypes('object').columns:
         data.loc[:, col] = data[col].map(code)
 
@@ -29,7 +28,7 @@ def encodage(data: pd.DataFrame) -> pd.DataFrame:
 
 
 def feature_engineering(data: pd.DataFrame, intitaldata: pd.DataFrame) -> pd.DataFrame:
-    missing_rate = data.isna().sum()/data.shape[0]
+    missing_rate = intitaldata.isna().sum()/intitaldata.shape[0]
     viral_columns = list(intitaldata.columns[(
         missing_rate < 0.80) & (missing_rate > 0.75)])
 
