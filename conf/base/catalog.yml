@@ -36,3 +36,12 @@ test_X:
 test_Y:
     type: pandas.ExcelDataSet
     filepath: data/01_raw/test_Y.xlsx
+
+model_save:
+    type: pickle.PickleDataSet
+    filepath: data/06_models/model_save.pkl
+    backend: pickle
+
+prediction:
+    type: pandas.ExcelDataSet
+    filepath: data/07_model_output/prediction.xlsx

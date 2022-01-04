@@ -7,16 +7,19 @@ from kedro.io import DataCatalog
 from kedro.versioning import Journal
 
 from .pipelines.data_engineering.pipeline import dataEng_pipeline
+from .pipelines.data_science.pipeline import dataScience_pipeline
 
 
 class ProjectHooks:
     @hook_impl
     def register_pipelines(self) -> Dict[str, Pipeline]:
         data_engineering_pipeline = dataEng_pipeline()
+        data_science_pipeline = dataScience_pipeline()
 
         return {
             "de": data_engineering_pipeline,
-            "__default__":  data_engineering_pipeline
+            "ds" : data_science_pipeline,
+            "__default__":  data_engineering_pipeline + data_science_pipeline
         }
 
     @hook_impl
