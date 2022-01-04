@@ -4,7 +4,7 @@ import logging
 
 import pickle
 
-from sklearn.metrics import f1_score, confusion_matrix, classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_selection import SelectKBest, f_classif
@@ -31,6 +31,10 @@ def prediction(model_save , X_test: pd.DataFrame , y_test: pd.DataFrame ) :
 
     print(confusion_matrix(y_test, ypred))
     print(classification_report(y_test, ypred))
+
+    score = accuracy_score(y_test,ypred)
+
+    print(score)
 
     return ypred
 
