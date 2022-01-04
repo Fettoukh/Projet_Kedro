@@ -41,9 +41,9 @@ def imputation(df):
     df = df.dropna(axis=0)
     return  df
 
-def data_split(data: pd.DataFrame) -> pd.DataFrame:
+def data_split(data: pd.DataFrame , test_size : float) -> pd.DataFrame:
     y = data["SARS-Cov-2 exam result"]
     x = data.drop("SARS-Cov-2 exam result" , axis=1)
-    X_train,X_test,Y_train,Y_test = train_test_split(x,y,test_size=0.2, random_state=0)
+    X_train,X_test,Y_train,Y_test = train_test_split(x,y,test_size=test_size, random_state=0)
     return X_train,X_test,Y_train,Y_test
 

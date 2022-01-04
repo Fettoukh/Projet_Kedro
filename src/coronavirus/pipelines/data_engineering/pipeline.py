@@ -5,6 +5,9 @@ from .nodes.preprocessing import feature_engineering
 from .nodes.preprocessing import imputation
 from .nodes.preprocessing import data_split
 
+#kedro run --pipeline= name
+
+
 def dataEng_pipeline():
     return Pipeline(
         [
@@ -31,7 +34,7 @@ def dataEng_pipeline():
 
             node(
                 func=data_split,
-                inputs=["imputation_dataset"],
+                inputs=["imputation_dataset" , "params:test_size"],
                 outputs=["train_X","test_X","train_Y","test_Y"],
             ),
         ]
