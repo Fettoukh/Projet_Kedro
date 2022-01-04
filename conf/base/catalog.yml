@@ -18,3 +18,21 @@ encoded_dataset:
 feature_engineered_dataset:
     type: pandas.ExcelDataSet
     filepath: data/01_raw/feature_engineered_dataset.xlsx
+
+#Splitting data
+
+train_X:
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/train_X.xlsx
+
+train_Y:
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/train_Y.xlsx
+
+test_X:
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/test_X.xlsx
+
+test_Y:
+    type: pandas.ExcelDataSet
+    filepath: data/01_raw/test_Y.xlsx

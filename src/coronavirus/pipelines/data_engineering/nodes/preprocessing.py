@@ -42,5 +42,8 @@ def imputation(df):
     return  df
 
 def data_split(data: pd.DataFrame) -> pd.DataFrame:
-    trainset, testset = train_test_split(data, test_size=0.2, random_state=0)
-    return trainset, testset
+    y = data["SARS-Cov-2 exam result"]
+    x = data.drop("SARS-Cov-2 exam result" , axis=1)
+    X_train,X_test,Y_train,Y_test = train_test_split(x,y,test_size=0.2, random_state=0)
+    return X_train,X_test,Y_train,Y_test
+

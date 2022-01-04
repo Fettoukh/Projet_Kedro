@@ -32,7 +32,7 @@ def dataEng_pipeline():
             node(
                 func=data_split,
                 inputs=["imputation_dataset"],
-                outputs=["train_data","test_data"],
+                outputs=["train_X","test_X","train_Y","test_Y"],
             ),
         ]
     )
