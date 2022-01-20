@@ -2,7 +2,7 @@ from kedro.pipeline import Pipeline, node
 from .nodes.modelisationSVM import modelisation
 from .nodes.modelisationSVM import prediction
 
-#kedro run --pipeline= name
+# kedro run --pipeline= name
 
 
 def dataScience_pipeline():
@@ -10,14 +10,15 @@ def dataScience_pipeline():
         [
             node(
                 func=modelisation,
-                inputs=["train_X","train_Y","test_X","test_Y"],
+                inputs=["train_X", "train_Y", "test_X", "test_Y", "params:k", "params:svGamma",
+                        "params:svcC", "params:pipelinePolynomialfeaturesDegree", "params:rangeMin", "params:rangeMax", "params:cv"],
                 outputs="model_save"
             ),
             node(
                 func=prediction,
-                inputs=["model_save","test_X","test_Y"],
-                outputs=["Classification_report","test_Prediction"]
+                inputs=["model_save", "test_X", "test_Y"],
+                outputs=["Classification_report", "test_Prediction"]
             ),
-            
+
         ]
     )

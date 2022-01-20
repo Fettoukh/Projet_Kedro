@@ -1,1 +1,14 @@
 test_size: 0.2
+
+k: 10
+svGamma: [1e-3, 1e-4, 0.0005]
+svcC: [1, 10, 100, 1000, 3000]
+pipelinePolynomialfeaturesDegree: [2, 3]
+cv: 4
+rangeMin: 45
+rangeMax: 60
+
+bloodColumns_missingRate_min: 0.88
+bloodColumns_missingRate_max: 0.9
+viralcolumns_missingRate_min: 0.75
+viralcolumns_missingRate_max: 0.8

@@ -9,33 +9,33 @@ initial_dataset:
 
 subset_dataset:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/subset_dataset.xlsx
+    filepath: data/02_intermediate/subset_dataset.xlsx
 
 encoded_dataset:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/encoded_dataset.xlsx
+    filepath: data/02_intermediate/encoded_dataset.xlsx
 
 feature_engineered_dataset:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/feature_engineered_dataset.xlsx
+    filepath: data/02_intermediate/feature_engineered_dataset.xlsx
 
 #Splitting data
 
 train_X:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/train_X.xlsx
+    filepath: data/04_feature/train_X.xlsx
 
 train_Y:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/train_Y.xlsx
+    filepath: data/04_feature/train_Y.xlsx
 
 test_X:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/test_X.xlsx
+    filepath: data/04_feature/test_X.xlsx
 
 test_Y:
     type: pandas.ExcelDataSet
-    filepath: data/01_raw/test_Y.xlsx
+    filepath: data/04_feature/test_Y.xlsx
 
 model_save:
     type: pickle.PickleDataSet
