@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node
-from .nodes.modelisation import modelisation
-from .nodes.modelisation import prediction
+from .nodes.modelisationSVM import modelisation
+from .nodes.modelisationSVM import prediction
 
 #kedro run --pipeline= name
 
@@ -16,7 +16,7 @@ def dataScience_pipeline():
             node(
                 func=prediction,
                 inputs=["model_save","test_X","test_Y"],
-                outputs="prediction"
+                outputs=["Classification_report","test_Prediction"]
             ),
             
         ]

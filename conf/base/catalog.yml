@@ -42,6 +42,12 @@ model_save:
     filepath: data/06_models/model_save.pkl
     backend: pickle
 
-prediction:
+Classification_report:
     type: pandas.ExcelDataSet
-    filepath: data/07_model_output/prediction.xlsx
+    save_args:
+        index: True
+    filepath: data/07_model_output/Classification_report.xlsx
+
+test_Prediction:
+    type: pandas.ExcelDataSet
+    filepath: data/07_model_output/test_Prediction.xlsx
