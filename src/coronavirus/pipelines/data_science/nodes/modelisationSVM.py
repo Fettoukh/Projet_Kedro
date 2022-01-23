@@ -3,6 +3,7 @@ import numpy as np
 import logging
 
 import pickle
+from os.path import exists
 
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.svm import SVC
@@ -20,7 +21,7 @@ def bestModel(X_train, y_train, k, svGamma, svcC, pipelinePolynomialfeaturesDegr
                     'svc__C': svcC,
                     'pipeline__polynomialfeatures__degree': pipelinePolynomialfeaturesDegree,
                     'pipeline__selectkbest__k': range(rangeMin, rangeMax)}
-    grid = GridSearchCV(svm, hyper_params, scoring='recall', cv=cv)
+    grid = RandomizedSearchCV(svm, hyper_params, scoring='recall', cv=cv, n_iter=40)
 
     grid.fit(X_train, y_train)
 
@@ -28,7 +29,7 @@ def bestModel(X_train, y_train, k, svGamma, svcC, pipelinePolynomialfeaturesDegr
     return model
 
 
-def modelisation(X_train: pd.DataFrame, y_train: pd.DataFrame, X_test: pd.DataFrame, y_test: pd.DataFrame, k, svGamma, svcC, pipelinePolynomialfeaturesDegree, rangeMin, rangeMax, cv):
+def modelisationSVM(X_train: pd.DataFrame, y_train: pd.DataFrame, X_test: pd.DataFrame, y_test: pd.DataFrame, k, svGamma, svcC, pipelinePolynomialfeaturesDegree, rangeMin, rangeMax, cv):
 
     model = bestModel(X_train, y_train, k, svGamma, svcC,
                       pipelinePolynomialfeaturesDegree, rangeMin, rangeMax, cv)
@@ -40,8 +41,10 @@ def modelisation(X_train: pd.DataFrame, y_train: pd.DataFrame, X_test: pd.DataFr
     return model_save
 
 
-def prediction(model_save, X_test: pd.DataFrame, y_test: pd.DataFrame):
+def predictionSVM(model_save, X_test: pd.DataFrame, y_test: pd.DataFrame):
+
     model = pickle.loads(model_save)
+
     ypred_nparray = model.predict(X_test)
 
     ypred = pd.DataFrame(ypred_nparray)
@@ -52,11 +55,10 @@ def prediction(model_save, X_test: pd.DataFrame, y_test: pd.DataFrame):
     #print("CONFUSION MATRIX",confusion_matrix(y_test, ypred))
     report = classification_report(y_test, ypred, output_dict=True)
     report1 = classification_report(y_test, ypred)
+    print("SVM : Support vector machines")
     print(report1)
     df_classification_report = pd.DataFrame(report).transpose()
     df_classification_report = df_classification_report.sort_values(
         by=['f1-score'], ascending=False)
-    print(df_classification_report)
-    score = accuracy_score(y_test, ypred)
 
     return df_classification_report, df
