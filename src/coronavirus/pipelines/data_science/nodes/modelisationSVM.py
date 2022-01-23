@@ -34,8 +34,6 @@ def modelisationSVM(X_train: pd.DataFrame, y_train: pd.DataFrame, X_test: pd.Dat
     model = bestModel(X_train, y_train, k, svGamma, svcC,
                       pipelinePolynomialfeaturesDegree, rangeMin, rangeMax, cv)
 
-    model.fit(X_train, y_train)
-
     model_save = pickle.dumps(model)
 
     return model_save
