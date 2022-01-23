@@ -5,7 +5,7 @@ from .nodes.preprocessing import feature_engineering
 from .nodes.preprocessing import imputation
 from .nodes.preprocessing import data_split
 
-#kedro run --pipeline= name
+# kedro run --pipeline= name
 
 
 def dataEng_pipeline():
@@ -13,7 +13,8 @@ def dataEng_pipeline():
         [
             node(
                 func=remove_Empty_Columns,
-                inputs=["initial_dataset"],
+                inputs=["initial_dataset", "params:bloodColumns_missingRate_min", "params:bloodColumns_missingRate_max",
+                        "params:viralcolumns_missingRate_min", "params:viralcolumns_missingRate_max"],
                 outputs="subset_dataset",
             ),
             node(
@@ -23,7 +24,8 @@ def dataEng_pipeline():
             ),
             node(
                 func=feature_engineering,
-                inputs=["encoded_dataset", "initial_dataset"],
+                inputs=["encoded_dataset", "initial_dataset",
+                        "params:viralcolumns_missingRate_min", "params:viralcolumns_missingRate_max"],
                 outputs="feature_engineered_dataset",
             ),
             node(
@@ -34,8 +36,8 @@ def dataEng_pipeline():
 
             node(
                 func=data_split,
-                inputs=["imputation_dataset" , "params:test_size"],
-                outputs=["train_X","test_X","train_Y","test_Y"],
+                inputs=["imputation_dataset", "params:test_size"],
+                outputs=["train_X", "test_X", "train_Y", "test_Y"],
             ),
         ]
     )
